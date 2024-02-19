@@ -1,0 +1,78 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-transform: capitalize;
+  font-weight: 700;
+  --primary: #088cd4;
+  --secondary: #fff;
+}
+html {
+  scrollbar-color: var(--primary) #333;
+  scrollbar-width: thin;
+}
+body {
+  width: 20rem;
+  padding: 1rem;
+  background-color: #222;
+}
+button {
+  padding: 0.5rem;
+  width: 100%;
+  font-size: 1rem;
+  background-color: var(--primary);
+  border: none;
+  cursor: pointer;
+  color: var(--secondary);
+  border-radius: 0.5rem;
+}
+h3 {
+  color: var(--secondary);
+  font-weight: bold;
+}
+section {
+  inline-size: 100%;
+  block-size: 100%;
+  & h3 {
+    margin-block-end: 1rem;
+  }
+}
+input[type="checkbox"] {
+  appearance: none;
+}
+a {
+  display: none;
+  text-decoration: none;
+  color: var(--secondary);
+  border-radius: 0.25rem;
+  padding: 0.25rem;
+}
+figure {
+  position: relative;
+  block-size: 7.5rem;
+  margin-block-end: 1rem;
+  text-align: center;
+}
+figure a {
+  position: absolute;
+  inset-inline-end: 0;
+  inset-block-start: 0;
+}
+figure:hover a {
+  display: block;
+  background-color: var(--primary);
+}
+
+figure:has(:checked) {
+  border: 1px solid var(--primary);
+  border-radius: 0.5rem;
+}
+figure img {
+  block-size: 100%;
+  cursor: pointer;
+}
+section button {
+  position: sticky;
+  bottom: 1rem;
+  box-shadow: 0 1.5rem #222;
+}
