@@ -1,34 +1,35 @@
 // {document} - currentSrc
 
-const urls = [];
-const exts = ["jpg", "jpeg", "png", "gif", "avif", "webp"];
-console.log("first desde content");
-// sessionStorage.getItem("hola");
-// const mensaje = "hola desde content";
-// sessionStorage.setItem("hola", JSON.stringify(mensaje));
-// console.log(sessionStorage.getItem("hola"));
+async function run() {
+  // let se = JSON.parse(sessionStorage.getItem("data"));
 
-// if (sessionStorage.getItem("data")) {
-//   console.log("hola desde content");
-// } else {
-//   console.log("gaaaaaa");
-// }
+  // console.log("grettings from content");
+  // console.log(se);
 
-for (const iterator of window.document.images) {
-  let ext = iterator.currentSrc.split(".").pop();
-  if (exts.includes(ext)) {
-    urls.push(iterator.currentSrc);
+  // if (se) {
+  //   chrome.storage.local.set({ data: se });
+  // } else {
+  const urls = [];
+  const exts = ["jpg", "jpeg", "png", "gif", "avif", "webp"];
+
+  for (const iterator of window.document.images) {
+    let ext = iterator.currentSrc.split(".").pop();
+    if (exts.includes(ext)) {
+      urls.push(iterator.currentSrc);
+    }
   }
+  const msg = dataMessage(urls);
+
+  sessionStorage.setItem("data", JSON.stringify(msg));
+  await chrome.storage.local.set({ data: msg });
 }
 
-if (urls.length === 0) {
-  chrome.runtime.sendMessage({
-    type: "not_found",
-    data: "not found image in current page",
-  });
-} else {
-  chrome.runtime.sendMessage({
-    type: "ok",
-    data: urls,
-  });
+function dataMessage(urls) {
+  if (urls.length === 0) {
+    return "not found image in current page";
+  }
+  return urls;
+  // }
 }
+
+run();
