@@ -52,6 +52,7 @@ figure {
   block-size: 7.5rem;
   margin-block-end: 1rem;
   text-align: center;
+  overflow: hidden;
 }
 figure a {
   position: absolute;
